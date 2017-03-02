@@ -1,6 +1,8 @@
 $(document).ready(function(){
 
+
   function newsArticles(source, articleNo) {
+
 
     var apiKey = '52fe927b3c4f4fe28bcf38d0b2e82875';
     var url = 'https://newsapi.org/v1/articles?source=' + source + '&apiKey=' + apiKey;
@@ -10,11 +12,13 @@ $(document).ready(function(){
     });
   }
 
-  var papers = ['buzzfeed', 'the-guardian-uk', 'the-huffington-post', 'the-new-york-times', 'mirror'];
+  $.get('http://localhost:3000/papers', function(data){
+    papers = data.paper
 
-  for (var k = 0; k < 3; k++){
-    for (var i = 0; i < papers.length; i++){
-      newsArticles(papers[i], k);
+   for (var k = 0; k < 3; k++){
+     for (var i = 0; i < papers.length; i++){
+       newsArticles(papers[i], k);
+      }
     }
-  }
+  })
 });
